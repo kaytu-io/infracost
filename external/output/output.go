@@ -13,10 +13,10 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 var outputVersion = "0.2"

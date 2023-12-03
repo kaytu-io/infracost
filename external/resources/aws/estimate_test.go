@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/infracost/infracost/external/schema"
-	awsusage "github.com/infracost/infracost/external/usage/aws"
+	"github.com/kaytu-io/infracost/external/schema"
+	awsusage "github.com/kaytu-io/infracost/external/usage/aws"
 )
 
 type estimates struct {

@@ -10,9 +10,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 type DashboardAPIClient struct {

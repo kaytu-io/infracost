@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/credentials"
+	"github.com/kaytu-io/infracost/external/credentials"
 )
 
 func cloudAPI(host string, path string, token string) ([]byte, error) {

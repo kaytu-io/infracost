@@ -4,7 +4,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/testutil"
 )
 
 func TestGenerateConfig(t *testing.T) {

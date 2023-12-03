@@ -10,8 +10,8 @@ import (
 
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // ComputeGuestAccelerator defines Guest Accelerator setup for Compute resources.

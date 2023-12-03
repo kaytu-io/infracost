@@ -1,12 +1,12 @@
 package aws
 
 import (
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
 
 	"fmt"
 
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/usage"
 	"github.com/shopspring/decimal"
 
 	"strings"

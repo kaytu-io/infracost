@@ -12,7 +12,7 @@ import (
 	"github.com/zclconf/go-cty/cty/function"
 	"golang.org/x/text/encoding/ianaindex"
 
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/logging"
 )
 
 // Base64DecodeFunc constructs a function that decodes a string containing a base64 sequence.

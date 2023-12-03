@@ -9,7 +9,7 @@ import (
 
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/ui"
 
 	"github.com/Masterminds/sprig"
 

@@ -1,6 +1,6 @@
 package azure
 
-import "github.com/infracost/infracost/external/schema"
+import "github.com/kaytu-io/infracost/external/schema"
 
 // ResourceRegistry grouped alphabetically
 var ResourceRegistry []*schema.RegistryItem = []*schema.RegistryItem{

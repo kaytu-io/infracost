@@ -35,12 +35,12 @@ import (
 	"github.com/zclconf/go-cty/cty/gocty"
 	ctyJson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/hcl"
-	"github.com/infracost/infracost/external/schema"
-	infSync "github.com/infracost/infracost/external/sync"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/hcl"
+	"github.com/kaytu-io/infracost/external/schema"
+	infSync "github.com/kaytu-io/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 // terragruntSourceLock is the global lock which works across TerragrunHCLProviders to provide

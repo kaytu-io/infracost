@@ -12,7 +12,7 @@ import (
 	"golang.org/x/mod/semver"
 	yamlv3 "gopkg.in/yaml.v3"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 const minUsageFileVersion = "0.1"

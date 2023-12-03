@@ -3,7 +3,7 @@ package aws_test
 import (
 	"testing"
 
-	"github.com/infracost/infracost/external/providers/terraform/tftest"
+	"github.com/kaytu-io/infracost/external/providers/terraform/tftest"
 )
 
 func TestKMSExternalKeyGoldenFile(t *testing.T) {

@@ -16,7 +16,7 @@ import (
 	"github.com/zclconf/go-cty/cty"
 	"github.com/zclconf/go-cty/cty/gocty"
 
-	"github.com/infracost/infracost/external/hcl/funcs"
+	"github.com/kaytu-io/infracost/external/hcl/funcs"
 )
 
 var (
@@ -986,7 +986,7 @@ func (b *Block) values() cty.Value {
 	}
 
 	// @TODO this needs to include all blocks in the future. However, we are limiting to just provider blocks just now
-	// as the repercussions for this change could be quite vast. See https://github.com/infracost/infracost/issues/2596 for
+	// as the repercussions for this change could be quite vast. See https://github.com/kaytu-io/infracost/issues/2596 for
 	// more information.
 	if b.Type() == "provider" {
 		for _, child := range b.Children() {

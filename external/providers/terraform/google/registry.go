@@ -1,6 +1,6 @@
 package google
 
-import "github.com/infracost/infracost/external/schema"
+import "github.com/kaytu-io/infracost/external/schema"
 
 var ResourceRegistry []*schema.RegistryItem = []*schema.RegistryItem{
 	getArtifactRegistryRepositoryRegistryItem(),

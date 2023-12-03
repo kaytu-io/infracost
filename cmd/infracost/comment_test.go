@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/testutil"
 )
 
 func TestComment(t *testing.T) {
@@ -27,7 +27,7 @@ func TestCommentBackoffRetry(t *testing.T) {
 		t.Helper()
 
 		attempts += 1
-		assert.Equal(t, "/api/v3/repos/infracost/infracost/issues/8/comments", r.RequestURI)
+		assert.Equal(t, "/api/v3/repos/kaytu-io/infracost/issues/8/comments", r.RequestURI)
 		if attempts < 2 {
 			w.WriteHeader(400)
 			return
@@ -36,8 +36,8 @@ func TestCommentBackoffRetry(t *testing.T) {
 		fmt.Fprintf(w, `{
   "id": 1,
   "node_id": "MDEyOklzc3VlQ29tbWVudDE=",
-  "url": "https://api.github.com/repos/infracost/infracost/issues/comments/1",
-  "html_url": "https://github.com/infracost/infracost/issues/1347#issuecomment-1",
+  "url": "https://api.github.com/repos/kaytu-io/infracost/issues/comments/1",
+  "html_url": "https://github.com/kaytu-io/infracost/issues/1347#issuecomment-1",
   "body": "Me too",
   "user": {
     "login": "infracost",
@@ -61,7 +61,7 @@ func TestCommentBackoffRetry(t *testing.T) {
   },
   "created_at": "2011-04-14T16:00:49Z",
   "updated_at": "2011-04-14T16:00:49Z",
-  "issue_url": "https://api.github.com/repos/infracost/infracost/issues/1347",
+  "issue_url": "https://api.github.com/repos/kaytu-io/infracost/issues/1347",
   "author_association": "COLLABORATOR"
 }`)
 	}))
@@ -76,7 +76,7 @@ func TestCommentBackoffRetry(t *testing.T) {
 		"--pull-request", "8",
 		"--behavior", "new",
 		"--path", path.Join("./testdata", dir, "infracost.json"),
-		"--repo", "infracost/infracost",
+		"--repo", "kaytu-io/infracost",
 	}, nil)
 
 	assert.Equal(t, 2, attempts)

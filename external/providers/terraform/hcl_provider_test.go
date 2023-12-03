@@ -17,10 +17,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/hcl"
-	"github.com/infracost/infracost/external/hcl/modules"
-	"github.com/infracost/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/hcl"
+	"github.com/kaytu-io/infracost/external/hcl/modules"
+	"github.com/kaytu-io/infracost/external/sync"
 )
 
 func setMockAttributes(blockAtts map[string]map[string]string) hcl.SetAttributesFunc {

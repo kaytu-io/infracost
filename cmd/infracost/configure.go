@@ -8,8 +8,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var supportedConfigureKeys = map[string]struct{}{

@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/testutil"
 )
 
 func TestOutputHelp(t *testing.T) {

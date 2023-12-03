@@ -3,9 +3,9 @@ package apiclient
 import (
 	"regexp"
 
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 // Regex for finding potential URLs and file paths in error messages

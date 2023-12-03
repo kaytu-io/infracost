@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/version"
+	"github.com/kaytu-io/infracost/external/version"
 )
 
 // WriteWarningFunc defines an interface that writes the provided msg as a warning
@@ -44,7 +44,7 @@ func PrintUsage(cmd *cobra.Command) {
 }
 
 var (
-	githubIssuesLink = LinkString("https://github.com/infracost/infracost/issues/new")
+	githubIssuesLink = LinkString("https://github.com/kaytu-io/infracost/issues/new")
 
 	stackErrorMsg = "An unexpected error occurred. We've been notified of it and will investigate it soon. If you would like to follow-up, please copy the above output and create an issue at:"
 )

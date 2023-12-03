@@ -10,8 +10,8 @@ import (
 	"github.com/go-git/go-git/v5"
 	"github.com/rs/zerolog"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 type ProjectContexter interface {

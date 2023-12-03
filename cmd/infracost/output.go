@@ -8,11 +8,11 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (
@@ -34,7 +34,7 @@ var (
 		"json":                      true,
 		"github-comment":            true,
 		"gitlab-comment":            true,
-		"azurerm-repos-comment":       true,
+		"azurerm-repos-comment":     true,
 		"bitbucket-comment":         true,
 		"bitbucket-comment-summary": true,
 		"slack-message":             true,

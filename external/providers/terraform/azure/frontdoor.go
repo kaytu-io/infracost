@@ -5,8 +5,8 @@ import (
 
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/resources/azure"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/azure"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // getAzureRMFrontdoorRegistryItem returns a registry item for the resource

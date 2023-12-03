@@ -3,7 +3,7 @@ package usage
 import (
 	"testing"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 	"github.com/stretchr/testify/assert"
 )
 

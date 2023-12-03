@@ -16,9 +16,9 @@ import (
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/mitchellh/hashstructure/v2"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/schema"
 
 	"github.com/rs/zerolog/log"
 	"github.com/tidwall/gjson"

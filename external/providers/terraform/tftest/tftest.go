@@ -14,19 +14,19 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/usage"
 
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/prices"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/prices"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/testutil"
 
-	"github.com/infracost/infracost/external/providers/terraform"
+	"github.com/kaytu-io/infracost/external/providers/terraform"
 )
 
 var tfProviders = `

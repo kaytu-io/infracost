@@ -15,12 +15,12 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/zclconf/go-cty/cty"
 
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/extclient"
-	"github.com/infracost/infracost/external/hcl/modules"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/extclient"
+	"github.com/kaytu-io/infracost/external/hcl/modules"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (

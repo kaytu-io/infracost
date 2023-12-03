@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/infracost/infracost/external/logging"
-	intSync "github.com/infracost/infracost/external/sync"
-	"github.com/infracost/infracost/external/ui"
-	"github.com/infracost/infracost/external/vcs"
-	"github.com/infracost/infracost/external/version"
+	"github.com/kaytu-io/infracost/external/logging"
+	intSync "github.com/kaytu-io/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/version"
 
 	"github.com/google/uuid"
 )

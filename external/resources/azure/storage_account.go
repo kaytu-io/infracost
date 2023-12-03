@@ -8,10 +8,10 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 // StorageAccount represents Azure data storage services.

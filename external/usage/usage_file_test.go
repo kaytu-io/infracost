@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/usage"
 
-	"github.com/infracost/infracost/external/providers/terraform/tftest"
+	"github.com/kaytu-io/infracost/external/providers/terraform/tftest"
 )
 
 func TestUsageFile(t *testing.T) {

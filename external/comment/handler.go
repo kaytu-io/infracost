@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/logging"
 )
 
 var defaultTag = "infracost-comment"

@@ -4,7 +4,7 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/infracost/infracost/external/providers/terraform"
+	"github.com/kaytu-io/infracost/external/providers/terraform"
 )
 
 func generateSupportedResourcesDocs(docsTemplatesPath string, outputPath string) error {

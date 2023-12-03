@@ -20,14 +20,14 @@ import (
 	"github.com/zclconf/go-cty/cty/gocty"
 	ctyJson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/hcl"
-	"github.com/infracost/infracost/external/hcl/modules"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/hcl"
+	"github.com/kaytu-io/infracost/external/hcl/modules"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary

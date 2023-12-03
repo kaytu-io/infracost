@@ -2,8 +2,8 @@ package azure
 
 import (
 	"fmt"
-	"github.com/infracost/infracost/external/resources/azure"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/azure"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func getMonitorActionGroupRegistryItem() *schema.RegistryItem {

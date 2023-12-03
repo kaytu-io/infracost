@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func strPtr(s string) *string {

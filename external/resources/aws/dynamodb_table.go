@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage/aws"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage/aws"
 	"github.com/shopspring/decimal"
 )
 

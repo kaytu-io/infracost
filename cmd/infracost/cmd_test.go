@@ -13,9 +13,9 @@ import (
 	"strings"
 	"testing"
 
-	main "github.com/infracost/infracost/cmd/infracost"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/testutil"
+	main "github.com/kaytu-io/infracost/cmd/infracost"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/testutil"
 )
 
 var (
@@ -24,7 +24,7 @@ var (
 	projectPathRegex = regexp.MustCompile(`(Project: .*) \(.*/infracost/examples/.*\)`)
 	versionRegex     = regexp.MustCompile(`Infracost v.*`)
 	panicRegex       = regexp.MustCompile(`runtime\serror:([\w\d\n\r\[\]\:\/\.\\(\)\+\,\{\}\*\@\s\?]*)Environment`)
-	pathRegex        = regexp.MustCompile(`(/.*/)(infracost/infracost/cmd/infracost/testdata/.*)`)
+	pathRegex        = regexp.MustCompile(`(/.*/)(kaytu-io/infracost/cmd/infracost/testdata/.*)`)
 )
 
 type GoldenFileOptions = struct {
@@ -92,7 +92,7 @@ func GetCommandOutput(t *testing.T, args []string, testOptions *GoldenFileOption
 	}
 
 	// Fix the VCS repo URL so the golden files don't fail on forks
-	os.Setenv("INFRACOST_VCS_REPOSITORY_URL", "https://github.com/infracost/infracost")
+	os.Setenv("INFRACOST_VCS_REPOSITORY_URL", "https://github.com/kaytu-io/infracost")
 	os.Setenv("INFRACOST_VCS_PULL_REQUEST_URL", "NOT_APPLICABLE")
 
 	errBuf := bytes.NewBuffer([]byte{})

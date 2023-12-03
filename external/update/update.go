@@ -17,8 +17,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"golang.org/x/mod/semver"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/version"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/version"
 )
 
 type Info struct {
@@ -54,7 +54,7 @@ func CheckForUpdate(ctx *config.RunContext) (*Info, error) {
 	} else {
 		cmd = "Go to https://www.infracost.io/docs/update for instructions"
 		if runtime.GOOS == "linux" || runtime.GOOS == "darwin" {
-			cmd = "$ curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh"
+			cmd = "$ curl -fsSL https://raw.githubusercontent.com/kaytu-io/infracost/master/scripts/install.sh | sh"
 		}
 	}
 
@@ -170,7 +170,7 @@ func getLatestGitHubVersion() (string, error) {
 		TagName string `json:"tag_name"`
 	}
 
-	resp, err := http.Get("https://api.github.com/repos/infracost/infracost/releases/latest")
+	resp, err := http.Get("https://api.github.com/repos/kaytu-io/infracost/releases/latest")
 	if err != nil {
 		return "", err
 	}

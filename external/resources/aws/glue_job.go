@@ -5,8 +5,8 @@ import (
 
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // GlueJob struct represents a serverless AWS Glue job. A Glue job is designed to clean, transform and merge data

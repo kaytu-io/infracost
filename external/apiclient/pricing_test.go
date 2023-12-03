@@ -16,9 +16,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/vcs"
 )
 
 func TestPricingAPIClient_PerformRequest(t *testing.T) {

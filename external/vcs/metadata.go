@@ -22,13 +22,13 @@ import (
 	"github.com/tidwall/gjson"
 	"github.com/xanzy/go-gitlab"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/sync"
 )
 
 var (
 	StubMetadata = Metadata{
-		Remote: urlStringToRemote("https://github.com/infracost/infracost"),
+		Remote: urlStringToRemote("https://github.com/kaytu-io/infracost"),
 		Branch: Branch{
 			Name: "stub-branch",
 		},

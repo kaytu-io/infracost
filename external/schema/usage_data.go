@@ -13,7 +13,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/logging"
 )
 
 type UsageData struct {

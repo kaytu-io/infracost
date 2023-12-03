@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/config"
 )
 
 func authCmd(ctx *config.RunContext) *cobra.Command {

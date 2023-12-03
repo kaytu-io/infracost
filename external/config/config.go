@@ -14,7 +14,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/logging"
 )
 
 const InfracostDir = ".infracost"

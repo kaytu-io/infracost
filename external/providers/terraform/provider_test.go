@@ -4,10 +4,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/testutil"
 
-	"github.com/infracost/infracost/external/providers/terraform/tftest"
+	"github.com/kaytu-io/infracost/external/providers/terraform/tftest"
 )
 
 func TestMain(m *testing.M) {

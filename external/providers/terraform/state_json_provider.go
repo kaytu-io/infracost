@@ -3,9 +3,9 @@ package terraform
 import (
 	"os"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
 
 	"github.com/pkg/errors"
 )

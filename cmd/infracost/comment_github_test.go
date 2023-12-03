@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/testutil"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/testutil"
 )
 
 func TestCommentGitHubHelp(t *testing.T) {

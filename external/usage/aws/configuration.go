@@ -3,7 +3,7 @@ package aws
 
 import (
 	"context"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/usage"
 	"os"
 	"strings"
 	"sync"

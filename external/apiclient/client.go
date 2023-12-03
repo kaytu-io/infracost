@@ -14,8 +14,8 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/version"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/version"
 )
 
 type APIClient struct {

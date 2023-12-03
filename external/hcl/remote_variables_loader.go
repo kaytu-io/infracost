@@ -10,8 +10,8 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/zclconf/go-cty/cty"
 
-	"github.com/infracost/infracost/external/extclient"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/extclient"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 // RemoteVariablesLoader handles loading remote variables from Terraform Cloud.

@@ -3,7 +3,7 @@ package output
 import (
 	"time"
 
-	"github.com/infracost/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/config"
 )
 
 // Metadata holds common information used to identify the system that Infracost is run within.

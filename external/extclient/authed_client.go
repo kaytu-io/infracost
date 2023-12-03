@@ -7,8 +7,8 @@ import (
 
 	"github.com/hashicorp/go-retryablehttp"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/logging"
 
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"

@@ -13,7 +13,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 //go:embed templates/*

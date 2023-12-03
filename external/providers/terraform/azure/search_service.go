@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 	"github.com/shopspring/decimal"
 	"github.com/tidwall/gjson"
 	"golang.org/x/text/cases"

@@ -6,7 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 var DefaultProviderRegion = "us-east-1"

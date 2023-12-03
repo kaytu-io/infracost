@@ -1,7 +1,7 @@
 package azure
 
 import (
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func getSentinelDataConnectorOffice365RegistryItem() *schema.RegistryItem {

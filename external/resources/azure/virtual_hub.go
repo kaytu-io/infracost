@@ -5,8 +5,8 @@ import (
 
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // VirtualHub is the central hub in the "hub and spoke architecture" of Azure Virtual WAN.

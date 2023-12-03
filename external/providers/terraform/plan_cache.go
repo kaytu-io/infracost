@@ -11,7 +11,7 @@ import (
 
 	"github.com/hashicorp/terraform-config-inspect/tfconfig"
 
-	"github.com/infracost/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/config"
 
 	"github.com/rs/zerolog/log"
 )

@@ -6,7 +6,7 @@ import (
 	svchost "github.com/hashicorp/terraform-svchost"
 	"github.com/hashicorp/terraform-svchost/auth"
 
-	"github.com/infracost/infracost/external/credentials"
+	"github.com/kaytu-io/infracost/external/credentials"
 )
 
 type HostCredentials struct {

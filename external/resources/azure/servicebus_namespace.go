@@ -8,9 +8,9 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 // ServiceBusNamespace struct represents Azure Service Bus Namespace

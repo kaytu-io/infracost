@@ -18,18 +18,18 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/vcs"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/prices"
-	"github.com/infracost/infracost/external/providers"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/prices"
+	"github.com/kaytu-io/infracost/external/providers"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 type projectJob struct {

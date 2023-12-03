@@ -13,7 +13,7 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/logging"
 )
 
 var defaultTerraformBinary = "terraform"

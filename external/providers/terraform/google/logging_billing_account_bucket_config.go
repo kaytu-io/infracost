@@ -1,8 +1,8 @@
 package google
 
 import (
-	"github.com/infracost/infracost/external/resources/google"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/google"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func getLoggingBillingAccountBucketConfigRegistryItem() *schema.RegistryItem {

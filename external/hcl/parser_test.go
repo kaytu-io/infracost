@@ -15,9 +15,9 @@ import (
 	"github.com/zclconf/go-cty/cty"
 	ctyJson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/hcl/modules"
-	"github.com/infracost/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/hcl/modules"
+	"github.com/kaytu-io/infracost/external/sync"
 )
 
 func Test_BasicParsing(t *testing.T) {

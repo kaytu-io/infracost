@@ -11,9 +11,9 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/credentials"
-	sync2 "github.com/infracost/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/credentials"
+	sync2 "github.com/kaytu-io/infracost/external/sync"
 )
 
 type TestLoaderE2EOpts = struct {

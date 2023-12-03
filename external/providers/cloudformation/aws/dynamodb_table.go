@@ -4,8 +4,8 @@ import (
 	"github.com/awslabs/goformation/v4/cloudformation/dynamodb"
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/resources/aws"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/aws"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func GetDynamoDBTableRegistryItem() *schema.RegistryItem {

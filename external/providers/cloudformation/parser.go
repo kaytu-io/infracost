@@ -8,8 +8,8 @@ import (
 
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 type Parser struct {

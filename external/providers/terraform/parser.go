@@ -13,16 +13,16 @@ import (
 	"github.com/pkg/errors"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/providers/terraform/aws"
-	"github.com/infracost/infracost/external/providers/terraform/azure"
-	"github.com/infracost/infracost/external/providers/terraform/google"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/providers/terraform/aws"
+	"github.com/kaytu-io/infracost/external/providers/terraform/azure"
+	"github.com/kaytu-io/infracost/external/providers/terraform/google"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // These show differently in the plan JSON for Terraform 0.12 and 0.13.
-var infracostProviderNames = []string{"infracost", "registry.terraform.io/infracost/infracost"}
+var infracostProviderNames = []string{"infracost", "registry.terraform.io/kaytu-io/infracost"}
 
 type Parser struct {
 	ctx                  *config.ProjectContext

@@ -3,8 +3,8 @@ package azure
 import (
 	"sort"
 
-	"github.com/infracost/infracost/external/resources/azure"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/azure"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func getRecoveryServicesVaultRegistryItem() *schema.RegistryItem {

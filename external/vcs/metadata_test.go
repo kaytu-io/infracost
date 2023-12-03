@@ -18,7 +18,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/infracost/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/sync"
 )
 
 func Test_urlStringToRemote(t *testing.T) {

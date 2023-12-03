@@ -5,10 +5,10 @@ import (
 
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 // PopulateActualCosts fetches cloud provider reported costs from the Infracost

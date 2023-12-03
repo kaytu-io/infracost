@@ -3,11 +3,11 @@ package terraform
 import (
 	"sync"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 
-	"github.com/infracost/infracost/external/providers/terraform/aws"
-	"github.com/infracost/infracost/external/providers/terraform/azure"
-	"github.com/infracost/infracost/external/providers/terraform/google"
+	"github.com/kaytu-io/infracost/external/providers/terraform/aws"
+	"github.com/kaytu-io/infracost/external/providers/terraform/azure"
+	"github.com/kaytu-io/infracost/external/providers/terraform/google"
 )
 
 type ResourceRegistryMap map[string]*schema.RegistryItem

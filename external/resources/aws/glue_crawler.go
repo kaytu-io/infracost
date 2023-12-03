@@ -3,8 +3,8 @@ package aws
 import (
 	"github.com/shopspring/decimal"
 
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // GlueCrawler struct represents a serverless AWS Glue crawler. A Glue crawler crawls defined data sources and sends them

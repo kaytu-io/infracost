@@ -6,11 +6,11 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 type PlanJSONProvider struct {

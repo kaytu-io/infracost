@@ -10,12 +10,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/comment"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/comment"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var validCommentGitHubBehaviors = []string{"update", "new", "hide-and-new", "delete-and-new"}

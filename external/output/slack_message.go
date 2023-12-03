@@ -9,7 +9,7 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/slack-go/slack"
 
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 func slackSummaryBlock(name string, currency string, cost, pastCost, diffCost *decimal.Decimal) []*slack.TextBlockObject {

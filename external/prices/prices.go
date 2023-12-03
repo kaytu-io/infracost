@@ -4,9 +4,9 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
 
 	"github.com/rs/zerolog/log"
 	"github.com/shopspring/decimal"

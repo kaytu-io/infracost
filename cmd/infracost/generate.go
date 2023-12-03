@@ -3,16 +3,16 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/infracost/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/config"
 	"gopkg.in/yaml.v2"
 	"io"
 	"os"
 
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/external/config/template"
-	"github.com/infracost/infracost/external/ui"
-	"github.com/infracost/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/config/template"
+	"github.com/kaytu-io/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/vcs"
 )
 
 type generateConfigCommand struct {

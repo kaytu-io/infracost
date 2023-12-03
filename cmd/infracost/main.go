@@ -15,13 +15,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 
-	"github.com/infracost/infracost/external/apiclient"
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/ui"
-	"github.com/infracost/infracost/external/update"
-	"github.com/infracost/infracost/external/version"
+	"github.com/kaytu-io/infracost/external/apiclient"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/update"
+	"github.com/kaytu-io/infracost/external/version"
 )
 
 func init() {

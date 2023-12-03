@@ -3,7 +3,7 @@ package azure
 import (
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func GetAzureRMCosmosdbCassandraTableRegistryItem() *schema.RegistryItem {

@@ -1,10 +1,10 @@
 package azure
 
 import (
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/resources"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/resources"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 // RecoveryServicesVault struct represents a storage vault that can azurerm users can back up

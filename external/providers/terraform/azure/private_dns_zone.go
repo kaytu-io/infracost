@@ -3,7 +3,7 @@ package azure
 import (
 	"strings"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func GetAzureRMDNSPrivateZoneRegistryItem() *schema.RegistryItem {

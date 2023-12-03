@@ -18,10 +18,10 @@ import (
 	"github.com/rs/zerolog"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
-	intSync "github.com/infracost/infracost/external/sync"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
+	intSync "github.com/kaytu-io/infracost/external/sync"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (

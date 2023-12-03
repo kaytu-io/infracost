@@ -4,8 +4,8 @@ import (
 	"github.com/awslabs/goformation/v4"
 	"github.com/pkg/errors"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 type TemplateProvider struct {

@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 	yamlv3 "gopkg.in/yaml.v3"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // ResourceUsage represents a resource block in the usage file

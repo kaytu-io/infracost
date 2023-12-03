@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/browser"
 	"github.com/rs/zerolog/log"
 
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 // AuthClient represents a client for Infracost's authentication process.

@@ -6,7 +6,7 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func GetAzureRMKeyVaultCertificateRegistryItem() *schema.RegistryItem {

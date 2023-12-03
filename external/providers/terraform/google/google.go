@@ -3,8 +3,8 @@ package google
 import (
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/providers/terraform/provider_schemas"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/providers/terraform/provider_schemas"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 var DefaultProviderRegion = "us-central1"

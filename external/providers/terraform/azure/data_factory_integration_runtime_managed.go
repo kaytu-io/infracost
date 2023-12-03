@@ -3,8 +3,8 @@ package azure
 import (
 	"strings"
 
-	"github.com/infracost/infracost/external/resources/azure"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/azure"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // This resource is superseded by azurerm_data_factory_integration_runtime_azure_ssis

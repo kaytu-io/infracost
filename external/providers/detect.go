@@ -10,12 +10,12 @@ import (
 
 	"github.com/awslabs/goformation/v4"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/hcl"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/providers/cloudformation"
-	"github.com/infracost/infracost/external/providers/terraform"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/hcl"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/providers/cloudformation"
+	"github.com/kaytu-io/infracost/external/providers/terraform"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // ValidationError represents an error that is raised because provider conditions are not met.

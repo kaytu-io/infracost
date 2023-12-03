@@ -20,10 +20,10 @@ import (
 	"github.com/zclconf/go-cty/cty/function/stdlib"
 	"github.com/zclconf/go-cty/cty/gocty"
 
-	"github.com/infracost/infracost/external/hcl/funcs"
-	"github.com/infracost/infracost/external/hcl/modules"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/hcl/funcs"
+	"github.com/kaytu-io/infracost/external/hcl/modules"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (

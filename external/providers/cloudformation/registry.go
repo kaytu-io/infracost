@@ -3,9 +3,9 @@ package cloudformation
 import (
 	"sync"
 
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 
-	"github.com/infracost/infracost/external/providers/cloudformation/aws"
+	"github.com/kaytu-io/infracost/external/providers/cloudformation/aws"
 )
 
 type ResourceRegistryMap map[string]*schema.RegistryItem

@@ -11,10 +11,10 @@ import (
 	json "github.com/json-iterator/go"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/output"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/output"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 var jsonSorted = json.Config{SortMapKeys: true}.Froze()

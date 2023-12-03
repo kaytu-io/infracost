@@ -7,8 +7,8 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/usage"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/usage"
 )
 
 func GetAzureRMApplicationGatewayRegistryItem() *schema.RegistryItem {

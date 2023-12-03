@@ -15,11 +15,11 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/mod/semver"
 
-	"github.com/infracost/infracost/external/clierror"
-	"github.com/infracost/infracost/external/config"
-	"github.com/infracost/infracost/external/credentials"
-	"github.com/infracost/infracost/external/schema"
-	"github.com/infracost/infracost/external/ui"
+	"github.com/kaytu-io/infracost/external/clierror"
+	"github.com/kaytu-io/infracost/external/config"
+	"github.com/kaytu-io/infracost/external/credentials"
+	"github.com/kaytu-io/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/ui"
 
 	"github.com/rs/zerolog/log"
 )

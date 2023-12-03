@@ -7,8 +7,8 @@ import (
 
 	"github.com/tidwall/gjson"
 
-	"github.com/infracost/infracost/external/resources/aws"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/resources/aws"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 func getECSServiceRegistryItem() *schema.RegistryItem {

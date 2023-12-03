@@ -1,7 +1,7 @@
 package aws
 
 import (
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost/external/schema"
 )
 
 // This is a free resource but needs it's own custom registry item to specify the custom ID lookup function.

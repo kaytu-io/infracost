@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	resources "github.com/infracost/infracost/external/resources/aws"
+	resources "github.com/kaytu-io/infracost/external/resources/aws"
 	"github.com/stretchr/testify/assert"
 )
 

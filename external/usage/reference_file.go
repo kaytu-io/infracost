@@ -3,8 +3,8 @@ package usage
 import (
 	"strings"
 
-	"github.com/infracost/infracost"
-	"github.com/infracost/infracost/external/schema"
+	"github.com/kaytu-io/infracost"
+	"github.com/kaytu-io/infracost/external/schema"
 	"github.com/pkg/errors"
 )
 

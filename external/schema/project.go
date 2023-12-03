@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/infracost/infracost/external/logging"
-	"github.com/infracost/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/logging"
+	"github.com/kaytu-io/infracost/external/vcs"
 )
 
 const (

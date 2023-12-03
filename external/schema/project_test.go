@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/infracost/infracost/external/vcs"
+	"github.com/kaytu-io/infracost/external/vcs"
 	"github.com/stretchr/testify/assert"
 )
 
