@@ -18,18 +18,18 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/infracost/infracost/internal/logging"
-	"github.com/infracost/infracost/internal/vcs"
+	"github.com/infracost/infracost/external/logging"
+	"github.com/infracost/infracost/external/vcs"
 
-	"github.com/infracost/infracost/internal/apiclient"
-	"github.com/infracost/infracost/internal/clierror"
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/output"
-	"github.com/infracost/infracost/internal/prices"
-	"github.com/infracost/infracost/internal/providers"
-	"github.com/infracost/infracost/internal/schema"
-	"github.com/infracost/infracost/internal/ui"
-	"github.com/infracost/infracost/internal/usage"
+	"github.com/infracost/infracost/external/apiclient"
+	"github.com/infracost/infracost/external/clierror"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/output"
+	"github.com/infracost/infracost/external/prices"
+	"github.com/infracost/infracost/external/providers"
+	"github.com/infracost/infracost/external/schema"
+	"github.com/infracost/infracost/external/ui"
+	"github.com/infracost/infracost/external/usage"
 )
 
 type projectJob struct {

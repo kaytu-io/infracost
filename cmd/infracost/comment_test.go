@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/infracost/infracost/internal/testutil"
+	"github.com/infracost/infracost/external/testutil"
 )
 
 func TestComment(t *testing.T) {

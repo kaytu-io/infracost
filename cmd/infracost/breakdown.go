@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/ui"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/ui"
 )
 
 func breakdownCmd(ctx *config.RunContext) *cobra.Command {

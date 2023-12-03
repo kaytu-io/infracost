@@ -5,11 +5,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/internal/apiclient"
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/logging"
-	"github.com/infracost/infracost/internal/output"
-	"github.com/infracost/infracost/internal/ui"
+	"github.com/infracost/infracost/external/apiclient"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/logging"
+	"github.com/infracost/infracost/external/output"
+	"github.com/infracost/infracost/external/ui"
 )
 
 func uploadCmd(ctx *config.RunContext) *cobra.Command {

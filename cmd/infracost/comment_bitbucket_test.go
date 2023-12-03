@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"testing"
 
-	"github.com/infracost/infracost/internal/testutil"
+	"github.com/infracost/infracost/external/testutil"
 )
 
 func TestCommentBitbucketHelp(t *testing.T) {

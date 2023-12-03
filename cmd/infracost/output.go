@@ -8,11 +8,11 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/internal/apiclient"
-	"github.com/infracost/infracost/internal/clierror"
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/output"
-	"github.com/infracost/infracost/internal/ui"
+	"github.com/infracost/infracost/external/apiclient"
+	"github.com/infracost/infracost/external/clierror"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/output"
+	"github.com/infracost/infracost/external/ui"
 )
 
 var (
@@ -23,7 +23,7 @@ var (
 		"html",
 		"github-comment",
 		"gitlab-comment",
-		"azure-repos-comment",
+		"azurerm-repos-comment",
 		"bitbucket-comment",
 		"bitbucket-comment-summary",
 		"slack-message",
@@ -34,7 +34,7 @@ var (
 		"json":                      true,
 		"github-comment":            true,
 		"gitlab-comment":            true,
-		"azure-repos-comment":       true,
+		"azurerm-repos-comment":       true,
 		"bitbucket-comment":         true,
 		"bitbucket-comment-summary": true,
 		"slack-message":             true,
@@ -68,7 +68,7 @@ func outputCmd(ctx *config.RunContext) *cobra.Command {
 
   Create markdown report to post in a Azure DevOps Repos comment:
 
-      infracost output --format azure-repos-comment --path "out*.json" # glob needs quotes
+      infracost output --format azurerm-repos-comment --path "out*.json" # glob needs quotes
 
   Create markdown report to post in a Bitbucket comment:
 
@@ -178,7 +178,7 @@ func outputCmd(ctx *config.RunContext) *cobra.Command {
 	cmd.Flags().StringArrayP("path", "p", []string{}, "Path to Infracost JSON files, glob patterns need quotes")
 	cmd.Flags().StringP("out-file", "o", "", "Save output to a file, helpful with format flag")
 
-	cmd.Flags().String("format", "table", "Output format: json, diff, table, html, github-comment, gitlab-comment, azure-repos-comment, bitbucket-comment, bitbucket-comment-summary, slack-message")
+	cmd.Flags().String("format", "table", "Output format: json, diff, table, html, github-comment, gitlab-comment, azurerm-repos-comment, bitbucket-comment, bitbucket-comment-summary, slack-message")
 	cmd.Flags().Bool("show-all-projects", false, "Show all projects in the table of the comment output")
 	cmd.Flags().Bool("show-skipped", false, "List unsupported and free resources")
 	cmd.Flags().StringSlice("fields", []string{"monthlyQuantity", "unit", "monthlyCost"}, "Comma separated list of output fields: all,price,monthlyQuantity,unit,hourlyCost,monthlyCost.\nSupported by table and html output formats")

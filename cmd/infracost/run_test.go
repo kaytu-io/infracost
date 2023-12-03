@@ -3,8 +3,8 @@ package main_test
 import (
 	"testing"
 
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/testutil"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/testutil"
 )
 
 func TestFlagErrorsNoPath(t *testing.T) {

@@ -7,9 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/infracost/infracost/internal/config"
+	"github.com/infracost/infracost/external/config"
 
-	"github.com/infracost/infracost/internal/testutil"
+	"github.com/infracost/infracost/external/testutil"
 )
 
 func TestUpload(t *testing.T) {

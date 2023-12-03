@@ -8,17 +8,17 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/infracost/infracost/internal/apiclient"
-	"github.com/infracost/infracost/internal/logging"
+	"github.com/infracost/infracost/external/apiclient"
+	"github.com/infracost/infracost/external/logging"
 
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/internal/clierror"
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/output"
-	"github.com/infracost/infracost/internal/ui"
+	"github.com/infracost/infracost/external/clierror"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/output"
+	"github.com/infracost/infracost/external/ui"
 )
 
 type CommentOutput struct {
@@ -42,7 +42,7 @@ func commentCmd(ctx *config.RunContext) *cobra.Command {
 
   Post a new comment to an Azure Repos pull request:
 
-      infracost comment azure-repos --repo-url https://dev.azure.com/my-org/my-project/_git/my-repo --pull-request 3 --path infracost.json --behavior new --azure-access-token $AZURE_ACCESS_TOKEN`,
+      infracost comment azurerm-repos --repo-url https://dev.azure.com/my-org/my-project/_git/my-repo --pull-request 3 --path infracost.json --behavior new --azurerm-access-token $AZURE_ACCESS_TOKEN`,
 		ValidArgs: []string{"--", "-"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()

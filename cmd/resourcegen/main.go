@@ -25,7 +25,7 @@ var (
 
 	allowedProviders = map[string]struct{}{
 		"aws":    {},
-		"azure":  {},
+		"azurerm":  {},
 		"google": {},
 	}
 
@@ -37,7 +37,7 @@ var (
 
 func main() {
 	var c config
-	flag.StringVar(&c.CloudProvider, "cloud-provider", "aws", "Cloud provider to create resource for, one of [aws, azure, google]")
+	flag.StringVar(&c.CloudProvider, "cloud-provider", "aws", "Cloud provider to create resource for, one of [aws, azurerm, google]")
 	flag.StringVar(&c.Filename, "resource-name", "", "The resource name to generate, use underscores between names, e.g. autoscaling_group (required)")
 	flag.BoolVar(&c.WithHelp, "with-help", false, "Generate your resources with doc blocks and examples to help you get started. Useful for understanding how to add a resource")
 	flag.Parse()
@@ -52,7 +52,7 @@ func main() {
 	}
 
 	if _, ok := allowedProviders[c.CloudProvider]; !ok {
-		exitWithErr(fmt.Errorf("[%s] is an invalid provider, please use one of [aws, azure, google]", c.CloudProvider))
+		exitWithErr(fmt.Errorf("[%s] is an invalid provider, please use one of [aws, azurerm, google]", c.CloudProvider))
 	}
 
 	c.Filename = strings.ToLower(c.Filename)
@@ -86,7 +86,7 @@ type config struct {
 
 func (c config) FullResourceName() string {
 	prefix := c.CloudProvider
-	if c.CloudProvider == "azure" {
+	if c.CloudProvider == "azurerm" {
 		prefix = "azurerm"
 	}
 
@@ -109,7 +109,7 @@ func (c config) ResourceURL() string {
 	switch c.CloudProvider {
 	case "aws":
 		return "https://aws.amazon.com"
-	case "azure":
+	case "azurerm":
 		return "https://azure.microsoft.com"
 	case "google":
 		return "https://cloud.google.com"

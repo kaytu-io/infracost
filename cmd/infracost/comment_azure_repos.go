@@ -7,31 +7,31 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/infracost/infracost/internal/apiclient"
-	"github.com/infracost/infracost/internal/comment"
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/logging"
-	"github.com/infracost/infracost/internal/output"
-	"github.com/infracost/infracost/internal/ui"
+	"github.com/infracost/infracost/external/apiclient"
+	"github.com/infracost/infracost/external/comment"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/logging"
+	"github.com/infracost/infracost/external/output"
+	"github.com/infracost/infracost/external/ui"
 )
 
 var validCommentAzureReposBehaviors = []string{"update", "new", "delete-and-new"}
 
 func commentAzureReposCmd(ctx *config.RunContext) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "azure-repos",
+		Use:   "azurerm-repos",
 		Short: "Post an Infracost comment to Azure Repos",
 		Long:  "Post an Infracost comment to Azure Repos",
 		Example: `  Update comment on a pull request:
 
-      infracost comment azure-repos --repo-url https://dev.azure.com/my-org/my-project/_git/my-repo --pull-request 3 --path infracost.json --azure-access-token $AZURE_ACCESS_TOKEN`,
+      infracost comment azurerm-repos --repo-url https://dev.azure.com/my-org/my-project/_git/my-repo --pull-request 3 --path infracost.json --azurerm-access-token $AZURE_ACCESS_TOKEN`,
 		ValidArgs: []string{"--", "-"},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			ctx.ContextValues.SetValue("platform", "azure-repos")
+			ctx.ContextValues.SetValue("platform", "azurerm-repos")
 
 			var err error
 
-			token, _ := cmd.Flags().GetString("azure-access-token")
+			token, _ := cmd.Flags().GetString("azurerm-access-token")
 			tag, _ := cmd.Flags().GetString("tag")
 			extra := comment.AzureReposExtra{
 				Token: token,
@@ -115,8 +115,8 @@ func commentAzureReposCmd(ctx *config.RunContext) *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("behavior", func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 		return validCommentAzureReposBehaviors, cobra.ShellCompDirectiveDefault
 	})
-	cmd.Flags().String("azure-access-token", "", "Azure DevOps access token")
-	_ = cmd.MarkFlagRequired("azure-access-token")
+	cmd.Flags().String("azurerm-access-token", "", "Azure DevOps access token")
+	_ = cmd.MarkFlagRequired("azurerm-access-token")
 	cmd.Flags().StringArrayP("path", "p", []string{}, "Path to Infracost JSON files, glob patterns need quotes")
 	_ = cmd.MarkFlagRequired("path")
 	_ = cmd.MarkFlagFilename("path", "json")

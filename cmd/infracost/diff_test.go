@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/infracost/infracost/internal/config"
-	"github.com/infracost/infracost/internal/testutil"
+	"github.com/infracost/infracost/external/config"
+	"github.com/infracost/infracost/external/testutil"
 )
 
 func TestDiffHelp(t *testing.T) {
