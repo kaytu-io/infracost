@@ -1,8 +1,6 @@
 module github.com/kaytu-io/infracost
 
-go 1.21
-
-toolchain go1.21.3
+go 1.21.3
 
 require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
@@ -69,7 +67,7 @@ require (
 	github.com/aws/smithy-go v1.14.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/hashicorp/hcl v1.0.1-vault // indirect
-	github.com/hashicorp/hcl/v2 v2.16.2
+	github.com/hashicorp/hcl/v2 v2.17.0
 	github.com/imdario/mergo v0.3.13
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
@@ -206,9 +204,9 @@ require (
 	github.com/sourcegraph/jsonrpc2 v0.2.0 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
-	github.com/terraform-linters/tflint v0.46.1 // indirect
-	github.com/terraform-linters/tflint-plugin-sdk v0.16.1 // indirect
-	github.com/terraform-linters/tflint-ruleset-terraform v0.3.0 // indirect
+	github.com/terraform-linters/tflint v0.47.0 // indirect
+	github.com/terraform-linters/tflint-plugin-sdk v0.17.0 // indirect
+	github.com/terraform-linters/tflint-ruleset-terraform v0.4.0 // indirect
 	github.com/urfave/cli/v2 v2.25.5 // indirect
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect

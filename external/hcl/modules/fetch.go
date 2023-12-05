@@ -3,8 +3,6 @@ package modules
 import (
 	"fmt"
 	"os"
-	"path/filepath"
-	"strings"
 	"sync"
 
 	getter "github.com/hashicorp/go-getter"
@@ -41,9 +39,7 @@ func (r *PackageFetcher) fetch(moduleAddr string, dest string) error {
 
 		// Skip dotfiles and create new symlinks to be consistent with what Terraform init does
 		opt := copy.Options{
-			Skip: func(src string) (bool, error) {
-				return strings.HasPrefix(filepath.Base(src), "."), nil
-			},
+
 			OnSymlink: func(src string) copy.SymlinkAction {
 				return copy.Shallow
 			},

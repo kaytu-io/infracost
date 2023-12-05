@@ -72,7 +72,7 @@ func (r *DBInstance) BuildResource() *schema.Resource {
 		databaseEngine = "MySQL"
 	case "mariadb":
 		databaseEngine = "MariaDB"
-	case "aurora", "aurora-postgresql":
+	case "aurora":
 		databaseEngine = "Aurora MySQL"
 	case "aurora-postgresql":
 		databaseEngine = "Aurora PostgreSQL"

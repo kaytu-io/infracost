@@ -57,7 +57,7 @@ func (r *RDSCluster) BuildResource() *schema.Resource {
 
 	var databaseEngine string
 	switch r.Engine {
-	case "aurora", "aurora-postgresql":
+	case "aurora":
 		databaseEngine = "Aurora MySQL"
 	case "aurora-postgresql":
 		databaseEngine = "Aurora PostgreSQL"
