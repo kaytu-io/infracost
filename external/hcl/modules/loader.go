@@ -26,9 +26,9 @@ import (
 
 var (
 	// downloadDir is name of the directory where remote modules are download
-	downloadDir = ".infracost/terraform_modules"
+	downloadDir = ".pennywise/terraform_modules"
 	// manifestPath is the name of the module manifest file which stores the metadata of the modules
-	manifestPath = ".infracost/terraform_modules/manifest.json"
+	manifestPath = ".pennywise/terraform_modules/manifest.json"
 	// tfManifestPath is the name of the terraform module manifest file which stores the metadata of the modules
 	tfManifestPath = ".terraform/modules/modules.json"
 
@@ -96,7 +96,7 @@ func (m *ModuleLoader) manifestFilePath(projectPath string) string {
 
 	rel, _ := filepath.Rel(m.cachePath, projectPath)
 	sum := md5.Sum([]byte(rel)) //nolint
-	return filepath.Join(m.cachePath, ".infracost/terraform_modules/", fmt.Sprintf("manifest-%x.json", sum))
+	return filepath.Join(m.cachePath, ".pennywise/terraform_modules/", fmt.Sprintf("manifest-%x.json", sum))
 }
 
 // tfManifestFilePath is the path to the Terraform module manifest file relative to the current working directory.

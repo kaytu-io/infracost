@@ -21,7 +21,6 @@ import (
 	"github.com/zclconf/go-cty/cty/gocty"
 
 	"github.com/kaytu-io/infracost/external/hcl/funcs"
-	"github.com/kaytu-io/infracost/external/hcl/modules"
 	"github.com/kaytu-io/infracost/external/logging"
 	"github.com/kaytu-io/infracost/external/ui"
 )
@@ -77,9 +76,6 @@ type Evaluator struct {
 	inputVars map[string]cty.Value
 	// moduleCalls are the modules that the list of Blocks call to. This is built at runtime.
 	moduleCalls map[string]*ModuleCall
-	// moduleMetadata is a lookup map of where modules exist on the local filesystem. This is built as part of a
-	// Terraform or Infracost init.
-	moduleMetadata *modules.Manifest
 	// visitedModules is a lookup map to hold information by the Evaluator of modules that it has already evaluated.
 	visitedModules map[string]map[string]cty.Value
 	// module defines the input and module path for the Evaluator. It is the root module of the config.
@@ -102,7 +98,6 @@ func NewEvaluator(
 	module Module,
 	workingDir string,
 	inputVars map[string]cty.Value,
-	moduleMetadata *modules.Manifest,
 	visitedModules map[string]map[string]cty.Value,
 	workspace string,
 	blockBuilder BlockBuilder,
@@ -151,7 +146,6 @@ func NewEvaluator(
 		module:         module,
 		ctx:            ctx,
 		inputVars:      inputVars,
-		moduleMetadata: moduleMetadata,
 		moduleCalls:    map[string]*ModuleCall{},
 		visitedModules: visitedModules,
 		workspace:      workspace,
@@ -336,7 +330,6 @@ func (e *Evaluator) evaluateModules() {
 			},
 			e.workingDir,
 			vars,
-			e.moduleMetadata,
 			map[string]map[string]cty.Value{},
 			e.workspace,
 			e.blockBuilder,
@@ -870,18 +863,6 @@ func (e *Evaluator) loadModule(b *Block) (*ModuleCall, error) {
 	}
 
 	var modulePath string
-
-	if e.moduleMetadata != nil {
-		// if we have module metadata we can parse all the modules as they'll be cached locally!
-
-		// Strip any "module." and "[*]" parts from the module name so it matches the manifest key format
-		key := modReplace.ReplaceAllString(b.FullName(), "")
-		key = nestedModReplace.ReplaceAllString(key, ".")
-		key = modArrayPartReplace.ReplaceAllString(key, "")
-
-		modulePath = e.moduleMetadata.FindModulePath(key)
-		e.logger.Debug().Msgf("using path '%s' for module '%s' based on key '%s'", modulePath, b.FullName(), key)
-	}
 
 	if modulePath == "" {
 		if !strings.HasPrefix(source, fmt.Sprintf(".%c", os.PathSeparator)) && !strings.HasPrefix(source, fmt.Sprintf("..%c", os.PathSeparator)) {
