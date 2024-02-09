@@ -5,8 +5,6 @@ import (
 
 	"github.com/kaytu-io/infracost/external/config"
 	"github.com/kaytu-io/infracost/external/schema"
-	"github.com/kaytu-io/infracost/external/ui"
-
 	"github.com/pkg/errors"
 )
 
@@ -37,12 +35,6 @@ func (p *StateJSONProvider) AddMetadata(metadata *schema.ProjectMetadata) {
 }
 
 func (p *StateJSONProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, error) {
-	spinner := ui.NewSpinner("Extracting only cost-related params from terraform", ui.SpinnerOptions{
-		EnableLogging: p.ctx.RunContext.Config.IsLogging(),
-		NoColor:       p.ctx.RunContext.Config.NoColor,
-		Indent:        "  ",
-	})
-	defer spinner.Fail()
 
 	j, err := os.ReadFile(p.Path)
 	if err != nil {
@@ -70,6 +62,5 @@ func (p *StateJSONProvider) LoadResources(usage schema.UsageMap) ([]*schema.Proj
 	project.PartialPastResources = partialPastResources
 	project.PartialResources = partialResources
 
-	spinner.Success()
 	return []*schema.Project{project}, nil
 }

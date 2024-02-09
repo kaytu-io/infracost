@@ -20,20 +20,16 @@ import (
 	"github.com/zclconf/go-cty/cty/gocty"
 	ctyJson "github.com/zclconf/go-cty/cty/json"
 
-	"github.com/kaytu-io/infracost/external/apiclient"
-	"github.com/kaytu-io/infracost/external/clierror"
 	"github.com/kaytu-io/infracost/external/config"
 	"github.com/kaytu-io/infracost/external/hcl"
 	"github.com/kaytu-io/infracost/external/hcl/modules"
 	"github.com/kaytu-io/infracost/external/logging"
 	"github.com/kaytu-io/infracost/external/schema"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type HCLProvider struct {
-	policyClient   *apiclient.PolicyAPIClient
 	parsers        []*hcl.Parser
 	planJSONParser *Parser
 	logger         zerolog.Logger
@@ -160,16 +156,7 @@ func NewHCLProvider(ctx *config.ProjectContext, config *HCLProviderConfig, opts 
 		return nil, err
 	}
 
-	var policyClient *apiclient.PolicyAPIClient
-	if runCtx.Config.PoliciesEnabled {
-		policyClient, err = apiclient.NewPolicyAPIClient(runCtx)
-		if err != nil {
-			logger.Err(err).Msgf("failed to initialize policy client")
-		}
-	}
-
 	return &HCLProvider{
-		policyClient:   policyClient,
 		parsers:        parsers,
 		planJSONParser: NewParser(ctx, true),
 		ctx:            ctx,
@@ -216,13 +203,6 @@ func (p *HCLProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, e
 			project.Metadata.VCSCodeChanged = &j.Module.HasChanges
 		}
 
-		if p.policyClient != nil {
-			err := p.policyClient.UploadPolicyData(project)
-			if err != nil {
-				p.logger.Err(err).Msgf("failed to upload policy data %s", project.Name)
-			}
-		}
-
 		projects[i] = project
 	}
 
@@ -266,11 +246,6 @@ func (p *HCLProvider) newProject(parsed HCLProject) *schema.Project {
 				Data:    warning.Data,
 			}
 
-			if p.ctx.RunContext.Config.IsLogging() {
-				logging.Logger.Warn().Msg(warning.FriendlyMessage)
-			} else {
-				ui.PrintWarning(p.ctx.RunContext.ErrWriter, warning.FriendlyMessage)
-			}
 		}
 
 		metadata.Warnings = warnings
@@ -356,19 +331,8 @@ func (p *HCLProvider) Modules() []HCLProject {
 			}()
 
 			for parser := range ch {
-				if numJobs > 1 && !p.config.SuppressLogging {
-					fmt.Fprintf(os.Stderr, "Detected Terraform project at %s\n", ui.DisplayPath(parser.Path()))
-				}
 
 				module, modErr := parser.ParseDirectory()
-				if modErr != nil {
-					if v, ok := modErr.(*clierror.PanicError); ok {
-						err := apiclient.ReportCLIError(p.ctx.RunContext, v, false)
-						if err != nil {
-							p.logger.Debug().Err(err).Msg("error sending unexpected runtime error")
-						}
-					}
-				}
 
 				mu.Lock()
 				mods = append(mods, HCLProject{Module: module, Error: modErr})
@@ -602,11 +566,6 @@ func (p *HCLProvider) marshalProviderBlock(block *hcl.Block) string {
 			"region": map[string]interface{}{
 				"constant_value": region,
 			},
-		},
-		InfracostMetadata: map[string]interface{}{
-			"filename":   block.Filename,
-			"start_line": block.StartLine,
-			"end_line":   block.EndLine,
 		},
 	}
 
@@ -907,9 +866,8 @@ type ModuleOut struct {
 }
 
 type ProviderConfig struct {
-	Name              string                 `json:"name"`
-	Expressions       map[string]interface{} `json:"expressions,omitempty"`
-	InfracostMetadata map[string]interface{} `json:"infracost_metadata"`
+	Name        string                 `json:"name"`
+	Expressions map[string]interface{} `json:"expressions,omitempty"`
 }
 
 type ResourceData struct {

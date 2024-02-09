@@ -11,7 +11,6 @@ import (
 	"github.com/awslabs/goformation/v4"
 
 	"github.com/kaytu-io/infracost/external/config"
-	"github.com/kaytu-io/infracost/external/hcl"
 	"github.com/kaytu-io/infracost/external/logging"
 	"github.com/kaytu-io/infracost/external/providers/terraform"
 	"github.com/kaytu-io/infracost/external/schema"
@@ -56,7 +55,6 @@ func Detect(ctx *config.ProjectContext, includePastResources bool) (schema.Provi
 		h, providerErr := terraform.NewHCLProvider(
 			ctx,
 			nil,
-			hcl.OptionWithSpinner(ctx.RunContext.NewSpinner),
 		)
 
 		if providerErr != nil {

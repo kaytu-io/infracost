@@ -23,7 +23,6 @@ import (
 	"github.com/kaytu-io/infracost/external/hcl/funcs"
 	"github.com/kaytu-io/infracost/external/hcl/modules"
 	"github.com/kaytu-io/infracost/external/logging"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (
@@ -91,7 +90,6 @@ type Evaluator struct {
 	workspace string
 	// blockBuilder handles generating blocks in the evaluation step.
 	blockBuilder BlockBuilder
-	newSpinner   ui.SpinnerFunc
 	logger       zerolog.Logger
 }
 
@@ -106,7 +104,6 @@ func NewEvaluator(
 	visitedModules map[string]map[string]cty.Value,
 	workspace string,
 	blockBuilder BlockBuilder,
-	spinFunc ui.SpinnerFunc,
 	logger zerolog.Logger,
 	parentContext *Context,
 ) *Evaluator {
@@ -157,7 +154,6 @@ func NewEvaluator(
 		workspace:      workspace,
 		workingDir:     workingDir,
 		blockBuilder:   blockBuilder,
-		newSpinner:     spinFunc,
 		logger:         l,
 	}
 }
@@ -201,11 +197,6 @@ func (e *Evaluator) MissingVars() []string {
 // parse and build up and child modules that are referenced in the Blocks and runs child Evaluator on
 // this Module.
 func (e *Evaluator) Run() (*Module, error) {
-	if e.newSpinner != nil {
-		spin := e.newSpinner("Evaluating Terraform directory")
-		defer spin.Success()
-	}
-
 	var lastContext hcl.EvalContext
 	// first we need to evaluate the top level Context - so this can be passed to any child modules that are found.
 	e.logger.Debug().Msg("evaluating top level context")
@@ -340,7 +331,6 @@ func (e *Evaluator) evaluateModules() {
 			map[string]map[string]cty.Value{},
 			e.workspace,
 			e.blockBuilder,
-			nil,
 			e.logger,
 			parentContext,
 		)

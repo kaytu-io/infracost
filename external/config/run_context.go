@@ -12,7 +12,6 @@ import (
 
 	"github.com/kaytu-io/infracost/external/logging"
 	intSync "github.com/kaytu-io/infracost/external/sync"
-	"github.com/kaytu-io/infracost/external/ui"
 	"github.com/kaytu-io/infracost/external/vcs"
 	"github.com/kaytu-io/infracost/external/version"
 
@@ -141,15 +140,6 @@ func EmptyRunContext() *RunContext {
 var (
 	outputIndent = "  "
 )
-
-// NewSpinner returns an ui.Spinner built from the RunContext.
-func (r *RunContext) NewSpinner(msg string) *ui.Spinner {
-	return ui.NewSpinner(msg, ui.SpinnerOptions{
-		EnableLogging: r.Config.IsLogging(),
-		NoColor:       r.Config.NoColor,
-		Indent:        outputIndent,
-	})
-}
 
 func (r *RunContext) GetParallelism() (int, error) {
 	var parallelism int

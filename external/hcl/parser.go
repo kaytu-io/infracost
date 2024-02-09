@@ -20,7 +20,6 @@ import (
 	"github.com/kaytu-io/infracost/external/extclient"
 	"github.com/kaytu-io/infracost/external/hcl/modules"
 	"github.com/kaytu-io/infracost/external/logging"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 var (
@@ -151,18 +150,9 @@ func OptionWithRemoteVarLoader(host, token, localWorkspace string) Option {
 		}
 
 		var loaderOpts []RemoteVariablesLoaderOption
-		if p.newSpinner != nil {
-			loaderOpts = append(loaderOpts, RemoteVariablesLoaderWithSpinner(p.newSpinner))
-		}
 
 		client := extclient.NewAuthedAPIClient(host, token)
 		p.remoteVariablesLoader = NewRemoteVariablesLoader(client, localWorkspace, p.logger, loaderOpts...)
-	}
-}
-
-func OptionWithBlockBuilder(blockBuilder BlockBuilder) Option {
-	return func(p *Parser) {
-		p.blockBuilder = blockBuilder
 	}
 }
 
@@ -182,19 +172,6 @@ func OptionWithTerraformWorkspace(name string) Option {
 	}
 }
 
-// OptionWithSpinner sets a SpinnerFunc onto the Parser. With this option enabled
-// the Parser will send progress to the Spinner. This is disabled by default as
-// we run the Parser concurrently underneath DirProvider and don't want to mess with its output.
-func OptionWithSpinner(f ui.SpinnerFunc) Option {
-	return func(p *Parser) {
-		p.newSpinner = f
-
-		if p.moduleLoader != nil {
-			p.moduleLoader.NewSpinner = f
-		}
-	}
-}
-
 // Parser is a tool for parsing terraform templates at a given file system location.
 type Parser struct {
 	initialPath           string
@@ -205,7 +182,6 @@ type Parser struct {
 	workspaceName         string
 	moduleLoader          *modules.ModuleLoader
 	blockBuilder          BlockBuilder
-	newSpinner            ui.SpinnerFunc
 	remoteVariablesLoader *RemoteVariablesLoader
 	logger                zerolog.Logger
 	hasChanges            bool
@@ -390,7 +366,6 @@ func (p *Parser) ParseDirectory() (m *Module, err error) {
 		nil,
 		p.workspaceName,
 		p.blockBuilder,
-		p.newSpinner,
 		p.logger,
 		nil,
 	)

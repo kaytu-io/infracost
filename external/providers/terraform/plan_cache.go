@@ -17,7 +17,7 @@ import (
 )
 
 var cacheFileVersion = "0.1"
-var cacheFileName = ".infracost-cache"
+var cacheFileName = ".pennywise-cache"
 var cacheMaxAgeSecs int64 = 60 * 30 // 30 minutes
 
 type terraformConfigFileState struct {

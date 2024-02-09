@@ -11,7 +11,6 @@ import (
 	"github.com/kaytu-io/infracost/external/clierror"
 	"github.com/kaytu-io/infracost/external/config"
 	"github.com/kaytu-io/infracost/external/schema"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 type PlanProvider struct {
@@ -45,13 +44,6 @@ func (p *PlanProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, 
 		return []*schema.Project{}, err
 	}
 
-	spinner := ui.NewSpinner("Extracting only cost-related params from terraform", ui.SpinnerOptions{
-		EnableLogging: p.ctx.RunContext.Config.IsLogging(),
-		NoColor:       p.ctx.RunContext.Config.NoColor,
-		Indent:        "  ",
-	})
-	defer spinner.Fail()
-
 	metadata := config.DetectProjectMetadata(p.ctx.ProjectConfig.Path)
 	metadata.Type = p.Type()
 	p.AddMetadata(metadata)
@@ -73,7 +65,6 @@ func (p *PlanProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, 
 	project.PartialPastResources = partialPastResources
 	project.PartialResources = partialResources
 
-	spinner.Success()
 	return []*schema.Project{project}, nil
 }
 
@@ -94,14 +85,9 @@ func (p *PlanProvider) generatePlanJSON() ([]byte, error) {
 		planPath = p.Path
 
 		if !IsTerraformDir(dir) {
-			m := fmt.Sprintf("%s %s.\n%s\n\n%s\n%s\n%s %s",
+			m := fmt.Sprintf("%s %s.",
 				"Could not detect Terraform directory for",
 				p.Path,
-				"Either the current working directory or the plan file's parent directory must be a Terraform directory.",
-				"If the above does not work you can generate the plan JSON file with:",
-				ui.PrimaryString("terraform show -json tfplan.binary > plan.json"),
-				"and then run Infracost with",
-				ui.PrimaryString("--path=plan.json"),
 			)
 			return []byte{}, clierror.NewCLIError(errors.New(m), "Could not detect Terraform directory for plan file")
 		}
@@ -120,10 +106,7 @@ func (p *PlanProvider) generatePlanJSON() ([]byte, error) {
 		defer os.Remove(opts.TerraformConfigFile)
 	}
 
-	spinner := ui.NewSpinner("Running terraform show", p.spinnerOpts)
-	defer spinner.Fail()
-
-	j, err := p.runShow(opts, spinner, planPath, false)
+	j, err := p.runShow(opts, planPath, false)
 	if err == nil {
 		p.cachedPlanJSON = j
 	}

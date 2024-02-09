@@ -40,7 +40,6 @@ import (
 	"github.com/kaytu-io/infracost/external/hcl"
 	"github.com/kaytu-io/infracost/external/schema"
 	infSync "github.com/kaytu-io/infracost/external/sync"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 // terragruntSourceLock is the global lock which works across TerragrunHCLProviders to provide
@@ -418,10 +417,9 @@ func (p *TerragruntHCLProvider) prepWorkingDirs() ([]*terragruntWorkingDirInfo, 
 	if err != nil {
 		return nil, clierror.NewCLIError(
 			errors.Errorf(
-				"%s\n%v%s",
+				"%s\n%v",
 				"Failed to parse the Terragrunt code using the Terragrunt library:",
 				err.Error(),
-				fmt.Sprintf("For a list of known issues and workarounds, see: %s", ui.LinkString("https://infracost.io/docs/features/terragrunt/")),
 			),
 			fmt.Sprintf("Error parsing the Terragrunt code using the Terragrunt library: %s", err),
 		)
@@ -589,9 +587,7 @@ func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions)
 	}
 	pconfig.TerraformVars = p.initTerraformVars(pconfig.TerraformVars, terragruntConfig.Inputs)
 
-	ops := []hcl.Option{
-		hcl.OptionWithSpinner(p.ctx.RunContext.NewSpinner),
-	}
+	ops := []hcl.Option{}
 	inputs, err := convertToCtyWithJson(terragruntConfig.Inputs)
 	if err != nil {
 		p.logger.Debug().Msgf("Failed to build Terragrunt inputs for: %s err: %s", info.workingDir, err)

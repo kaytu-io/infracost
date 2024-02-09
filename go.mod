@@ -4,7 +4,6 @@ go 1.21.3
 
 require (
 	github.com/awslabs/goformation/v4 v4.19.5
-	github.com/briandowns/spinner v1.15.0
 	github.com/fatih/color v1.15.0
 	github.com/google/go-cmp v0.6.0
 	github.com/google/uuid v1.6.0
@@ -66,11 +65,8 @@ require (
 	github.com/gruntwork-io/terragrunt v0.52.4
 	github.com/hashicorp/go-retryablehttp v0.7.2
 	github.com/hashicorp/go-terraform-address v0.0.0-20230405143912-a84f5d2c5b38
-	github.com/hashicorp/golang-lru/v2 v2.0.6
 	github.com/hashicorp/terraform-svchost v0.1.0
 	github.com/maruel/panicparse/v2 v2.3.1
-	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/pkg/browser v0.0.0-20201207095918-0426ae3fba23
 	github.com/rs/zerolog v1.31.0
 	github.com/shurcooL/githubv4 v0.0.0-20220115235240-a14260e6f8a2
 	github.com/shurcooL/graphql v0.0.0-20200928012149-18c5c3165e3a
@@ -147,6 +143,7 @@ require (
 	github.com/kevinburke/ssh_config v0.0.0-20201106050909-4977a11b4351 // indirect
 	github.com/lib/pq v1.10.5 // indirect
 	github.com/mattn/go-zglob v0.0.3 // indirect
+	github.com/mitchellh/hashstructure/v2 v2.0.2 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/mitchellh/panicwrap v1.0.0 // indirect
 	github.com/oklog/run v1.1.0 // indirect

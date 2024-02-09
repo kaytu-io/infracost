@@ -6,36 +6,22 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/kaytu-io/infracost/external/apiclient"
 	"github.com/kaytu-io/infracost/external/config"
-	"github.com/kaytu-io/infracost/external/logging"
 	"github.com/kaytu-io/infracost/external/schema"
-	"github.com/kaytu-io/infracost/external/ui"
 )
 
 type PlanJSONProvider struct {
 	ctx                  *config.ProjectContext
 	Path                 string
 	includePastResources bool
-	policyClient         *apiclient.PolicyAPIClient
 	logger               zerolog.Logger
 }
 
 func NewPlanJSONProvider(ctx *config.ProjectContext, includePastResources bool) *PlanJSONProvider {
-	var policyClient *apiclient.PolicyAPIClient
-	var err error
-	if ctx.RunContext.Config.PoliciesEnabled {
-		policyClient, err = apiclient.NewPolicyAPIClient(ctx.RunContext)
-		if err != nil {
-			logging.Logger.Debug().Err(err).Msgf("failed to initialize policy client")
-		}
-	}
-
 	return &PlanJSONProvider{
 		ctx:                  ctx,
 		Path:                 ctx.ProjectConfig.Path,
 		includePastResources: includePastResources,
-		policyClient:         policyClient,
 		logger:               ctx.Logger(),
 	}
 }
@@ -57,19 +43,13 @@ func (p *PlanJSONProvider) AddMetadata(metadata *schema.ProjectMetadata) {
 }
 
 func (p *PlanJSONProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, error) {
-	spinner := ui.NewSpinner("Extracting only cost-related params from terraform", ui.SpinnerOptions{
-		EnableLogging: p.ctx.RunContext.Config.IsLogging(),
-		NoColor:       p.ctx.RunContext.Config.NoColor,
-		Indent:        "  ",
-	})
-	defer spinner.Fail()
 
 	j, err := os.ReadFile(p.Path)
 	if err != nil {
 		return []*schema.Project{}, fmt.Errorf("Error reading Terraform plan JSON file %w", err)
 	}
 
-	project, err := p.LoadResourcesFromSrc(usage, j, spinner)
+	project, err := p.LoadResourcesFromSrc(usage, j)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +57,7 @@ func (p *PlanJSONProvider) LoadResources(usage schema.UsageMap) ([]*schema.Proje
 	return []*schema.Project{project}, nil
 }
 
-func (p *PlanJSONProvider) LoadResourcesFromSrc(usage schema.UsageMap, j []byte, spinner *ui.Spinner) (*schema.Project, error) {
+func (p *PlanJSONProvider) LoadResourcesFromSrc(usage schema.UsageMap, j []byte) (*schema.Project, error) {
 	metadata := config.DetectProjectMetadata(p.ctx.ProjectConfig.Path)
 	metadata.Type = p.Type()
 	p.AddMetadata(metadata)
@@ -98,18 +78,6 @@ func (p *PlanJSONProvider) LoadResourcesFromSrc(usage schema.UsageMap, j []byte,
 
 	project.PartialPastResources = partialPastResources
 	project.PartialResources = partialResources
-
-	// use TagPolicyAPIEndpoint for Policy2 instead of creating a new config variable
-	if p.policyClient != nil {
-		err := p.policyClient.UploadPolicyData(project)
-		if err != nil {
-			p.logger.Err(err).Msgf("Terraform project %s failed to upload policy data", project.Name)
-		}
-	}
-
-	if spinner != nil {
-		spinner.Success()
-	}
 
 	return project, nil
 }
