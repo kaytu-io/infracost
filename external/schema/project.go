@@ -7,11 +7,7 @@ import (
 	"encoding/base32"
 	"errors"
 	"fmt"
-	"path/filepath"
 	"strings"
-
-	"github.com/kaytu-io/infracost/external/logging"
-	"github.com/kaytu-io/infracost/external/vcs"
 )
 
 const (
@@ -96,32 +92,6 @@ func (m *ProjectMetadata) WorkspaceLabel() string {
 	}
 
 	return m.TerraformWorkspace
-}
-
-func (m *ProjectMetadata) GenerateProjectName(remote vcs.Remote, dashboardEnabled bool) string {
-	// If the VCS repo is set, use its name
-	if remote.Name != "" {
-		name := remote.Name
-
-		if m.VCSSubPath != "" {
-			name += "/" + m.VCSSubPath
-		}
-
-		return name
-	}
-
-	// If not then use a hash of the absolute filepath to the project
-	if dashboardEnabled {
-		absPath, err := filepath.Abs(m.Path)
-		if err != nil {
-			logging.Logger.Debug().Msgf("Could not get absolute path for %s", m.Path)
-			absPath = m.Path
-		}
-
-		return fmt.Sprintf("project_%s", shortHash(absPath, 8))
-	}
-
-	return m.Path
 }
 
 // Projects is a slice of Project that is ordered alphabetically by project name.

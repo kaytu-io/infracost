@@ -281,9 +281,6 @@ func (p *TerragruntHCLProvider) newErroredProject(di *terragruntWorkingDirInfo) 
 
 func (p *TerragruntHCLProvider) generateProjectName(metadata *schema.ProjectMetadata) string {
 	name := p.ctx.ProjectConfig.Name
-	if name == "" {
-		name = metadata.GenerateProjectName(p.ctx.RunContext.VCSMetadata.Remote, p.ctx.RunContext.IsCloudEnabled())
-	}
 	return name
 }
 

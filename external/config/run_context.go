@@ -10,12 +10,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/kaytu-io/infracost/external/logging"
 	intSync "github.com/kaytu-io/infracost/external/sync"
-	"github.com/kaytu-io/infracost/external/vcs"
-	"github.com/kaytu-io/infracost/external/version"
-
-	"github.com/google/uuid"
 )
 
 // ContextValues is a type that wraps a map with methods that safely
@@ -72,7 +69,6 @@ type RunContext struct {
 	uuid          uuid.UUID
 	Config        *Config
 	State         *State
-	VCSMetadata   vcs.Metadata
 	CMD           string
 	ContextValues *ContextValues
 	mu            *sync.RWMutex
@@ -104,18 +100,7 @@ func NewRunContextFromEnv(rootCtx context.Context) (*RunContext, error) {
 		Config:    cfg,
 		State:     state,
 		ContextValues: NewContextValues(
-			map[string]interface{}{
-				"version":               baseVersion(version.Version),
-				"fullVersion":           version.Version,
-				"isTest":                IsTest(),
-				"isDev":                 IsDev(),
-				"os":                    runtime.GOOS,
-				"ciPlatform":            ciPlatform(),
-				"cliPlatform":           os.Getenv("INFRACOST_CLI_PLATFORM"),
-				"ciScript":              ciScript(),
-				"ciPostCondition":       os.Getenv("INFRACOST_CI_POST_CONDITION"),
-				"ciPercentageThreshold": os.Getenv("INFRACOST_CI_PERCENTAGE_THRESHOLD"),
-			}),
+			map[string]interface{}{}),
 		ModuleMutex: &intSync.KeyMutex{},
 		StartTime:   time.Now().Unix(),
 	}
@@ -179,10 +164,6 @@ func (r *RunContext) Context() context.Context {
 // UUID returns the underlying run uuid. This can be used to globally identify the run context.
 func (r *RunContext) UUID() uuid.UUID {
 	return r.uuid
-}
-
-func (r *RunContext) VCSRepositoryURL() string {
-	return r.VCSMetadata.Remote.URL
 }
 
 func (r *RunContext) GetResourceWarnings() map[string]map[string]int {

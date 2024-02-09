@@ -48,9 +48,6 @@ func (p *PlanProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, 
 	metadata.Type = p.Type()
 	p.AddMetadata(metadata)
 	name := p.ctx.ProjectConfig.Name
-	if name == "" {
-		name = metadata.GenerateProjectName(p.ctx.RunContext.VCSMetadata.Remote, p.ctx.RunContext.IsCloudEnabled())
-	}
 
 	project := schema.NewProject(name, metadata)
 	parser := NewParser(p.ctx, p.includePastResources)

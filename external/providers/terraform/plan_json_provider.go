@@ -62,9 +62,6 @@ func (p *PlanJSONProvider) LoadResourcesFromSrc(usage schema.UsageMap, j []byte)
 	metadata.Type = p.Type()
 	p.AddMetadata(metadata)
 	name := p.ctx.ProjectConfig.Name
-	if name == "" {
-		name = metadata.GenerateProjectName(p.ctx.RunContext.VCSMetadata.Remote, p.ctx.RunContext.IsCloudEnabled())
-	}
 
 	project := schema.NewProject(name, metadata)
 	parser := NewParser(p.ctx, p.includePastResources)

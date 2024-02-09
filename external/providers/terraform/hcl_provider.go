@@ -130,8 +130,7 @@ func NewHCLProvider(ctx *config.ProjectContext, config *HCLProviderConfig, opts 
 	)
 
 	logger := ctx.Logger().With().Str("provider", "terraform_dir").Logger()
-	runCtx := ctx.RunContext
-	locatorConfig := &hcl.ProjectLocatorConfig{ExcludedSubDirs: ctx.ProjectConfig.ExcludePaths, ChangedObjects: runCtx.VCSMetadata.Commit.ChangedObjects, UseAllPaths: ctx.ProjectConfig.IncludeAllPaths}
+	locatorConfig := &hcl.ProjectLocatorConfig{ExcludedSubDirs: ctx.ProjectConfig.ExcludePaths, UseAllPaths: ctx.ProjectConfig.IncludeAllPaths}
 
 	cachePath := ctx.RunContext.Config.CachePath()
 	initialPath := ctx.ProjectConfig.Path
@@ -198,10 +197,6 @@ func (p *HCLProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, e
 		}
 
 		project := p.parseResources(j, usage)
-		if p.ctx.RunContext.VCSMetadata.HasChanges() {
-			j := j
-			project.Metadata.VCSCodeChanged = &j.Module.HasChanges
-		}
 
 		projects[i] = project
 	}
@@ -252,13 +247,6 @@ func (p *HCLProvider) newProject(parsed HCLProject) *schema.Project {
 	}
 
 	name := p.ctx.ProjectConfig.Name
-	if name == "" {
-		name = metadata.GenerateProjectName(p.ctx.RunContext.VCSMetadata.Remote, p.ctx.RunContext.IsCloudEnabled())
-
-		if p.ctx.RunContext.Config.ConfigFilePath == "" && parsed.Module.ModuleSuffix != "" {
-			name += "-" + parsed.Module.ModuleSuffix
-		}
-	}
 
 	return schema.NewProject(name, metadata)
 }
