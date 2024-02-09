@@ -129,7 +129,7 @@ func DetectProjectType(path string, forceCLI bool) string {
 		return "terraform_plan_binary"
 	}
 
-	if isTerragruntNestedDir(path, 5) {
+	if IsTerragruntNestedDir(path, 5) {
 		if forceCLI {
 			return "terragrunt_cli"
 		}
@@ -220,7 +220,7 @@ func isTerragruntDir(path string) bool {
 	return config.FileExists(filepath.Join(path, "terragrunt.hcl")) || config.FileExists(filepath.Join(path, "terragrunt.hcl.json"))
 }
 
-func isTerragruntNestedDir(path string, maxDepth int) bool {
+func IsTerragruntNestedDir(path string, maxDepth int) bool {
 	if isTerragruntDir(path) {
 		return true
 	}
@@ -231,7 +231,7 @@ func isTerragruntNestedDir(path string, maxDepth int) bool {
 			for _, entry := range entries {
 				name := entry.Name()
 				if entry.IsDir() && name != config.InfracostDir && name != ".terraform" {
-					if isTerragruntNestedDir(filepath.Join(path, name), maxDepth-1) {
+					if IsTerragruntNestedDir(filepath.Join(path, name), maxDepth-1) {
 						return true
 					}
 				}
