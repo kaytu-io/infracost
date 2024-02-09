@@ -4,10 +4,6 @@ import (
 	"sync"
 
 	"github.com/kaytu-io/infracost/external/schema"
-
-	"github.com/kaytu-io/infracost/external/providers/terraform/aws"
-	"github.com/kaytu-io/infracost/external/providers/terraform/azure"
-	"github.com/kaytu-io/infracost/external/providers/terraform/google"
 )
 
 type ResourceRegistryMap map[string]*schema.RegistryItem
@@ -21,39 +17,6 @@ func GetResourceRegistryMap() *ResourceRegistryMap {
 	once.Do(func() {
 		resourceRegistryMap = make(ResourceRegistryMap)
 
-		// Merge all resource registries
-		for _, registryItem := range aws.ResourceRegistry {
-			if registryItem.CloudResourceIDFunc == nil {
-				registryItem.CloudResourceIDFunc = aws.DefaultCloudResourceIDFunc
-			}
-			resourceRegistryMap[registryItem.Name] = registryItem
-			resourceRegistryMap[registryItem.Name].DefaultRefIDFunc = aws.GetDefaultRefIDFunc
-		}
-		for _, registryItem := range createFreeResources(aws.FreeResources, aws.GetDefaultRefIDFunc, aws.DefaultCloudResourceIDFunc) {
-			resourceRegistryMap[registryItem.Name] = registryItem
-		}
-
-		for _, registryItem := range azure.ResourceRegistry {
-			if registryItem.CloudResourceIDFunc == nil {
-				registryItem.CloudResourceIDFunc = azure.DefaultCloudResourceIDFunc
-			}
-			resourceRegistryMap[registryItem.Name] = registryItem
-			resourceRegistryMap[registryItem.Name].DefaultRefIDFunc = azure.GetDefaultRefIDFunc
-		}
-		for _, registryItem := range createFreeResources(azure.FreeResources, azure.GetDefaultRefIDFunc, azure.DefaultCloudResourceIDFunc) {
-			resourceRegistryMap[registryItem.Name] = registryItem
-		}
-
-		for _, registryItem := range google.ResourceRegistry {
-			if registryItem.CloudResourceIDFunc == nil {
-				registryItem.CloudResourceIDFunc = google.DefaultCloudResourceIDFunc
-			}
-			resourceRegistryMap[registryItem.Name] = registryItem
-			resourceRegistryMap[registryItem.Name].DefaultRefIDFunc = google.GetDefaultRefIDFunc
-		}
-		for _, registryItem := range createFreeResources(google.FreeResources, google.GetDefaultRefIDFunc, google.DefaultCloudResourceIDFunc) {
-			resourceRegistryMap[registryItem.Name] = registryItem
-		}
 	})
 
 	return &resourceRegistryMap
@@ -84,14 +47,6 @@ func (r *ResourceRegistryMap) GetDefaultRefIDFunc(resourceDataType string) schem
 	return func(d *schema.ResourceData) []string {
 		return []string{d.Get("id").String()}
 	}
-}
-
-func GetUsageOnlyResources() []string {
-	r := []string{}
-	r = append(r, aws.UsageOnlyResources...)
-	r = append(r, azure.UsageOnlyResources...)
-	r = append(r, google.UsageOnlyResources...)
-	return r
 }
 
 func createFreeResources(l []string, defaultRefsFunc schema.ReferenceIDFunc, resourceIdFunc schema.CloudResourceIDFunc) []*schema.RegistryItem {

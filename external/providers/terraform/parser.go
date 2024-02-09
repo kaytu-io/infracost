@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/pkg/errors"
 	"github.com/tidwall/gjson"
 
 	"github.com/kaytu-io/infracost/external/config"
@@ -91,9 +90,8 @@ func (p *Parser) createPartialResource(d *schema.ResourceData, u *schema.UsageDa
 	}
 }
 
-func (p *Parser) parseJSONResources(parsePrior bool, baseResources []*schema.PartialResource, usage schema.UsageMap, parsed, providerConf, conf, vars gjson.Result) []*schema.PartialResource {
+func (p *Parser) parseJSONResources(parsePrior bool, usage schema.UsageMap, parsed, providerConf, conf, vars gjson.Result) []*schema.PartialResource {
 	var resources []*schema.PartialResource
-	resources = append(resources, baseResources...)
 	var vals gjson.Result
 
 	isState := false
@@ -134,13 +132,7 @@ func (p *Parser) populateUsageData(resData map[string]*schema.ResourceData, usag
 }
 
 func (p *Parser) parseJSON(j []byte, usage schema.UsageMap) ([]*schema.PartialResource, []*schema.PartialResource, []schema.ProviderMetadata, error) {
-	baseResources := p.loadUsageFileResources(usage)
-
 	j, _ = StripSetupTerraformWrapper(j)
-
-	if !gjson.ValidBytes(j) {
-		return baseResources, baseResources, nil, errors.New("invalid JSON")
-	}
 
 	parsed := gjson.ParseBytes(j)
 
@@ -151,7 +143,7 @@ func (p *Parser) parseJSON(j []byte, usage schema.UsageMap) ([]*schema.PartialRe
 
 	providerMetadata := parseProviderConfig(providerConf)
 
-	resources := p.parseJSONResources(false, baseResources, usage, parsed, providerConf, conf, vars)
+	resources := p.parseJSONResources(false, usage, parsed, providerConf, conf, vars)
 	if !p.includePastResources {
 		return nil, resources, providerMetadata, nil
 	}
@@ -166,7 +158,7 @@ func (p *Parser) parseJSON(j []byte, usage schema.UsageMap) ([]*schema.PartialRe
 		return resources, resources, providerMetadata, nil
 	}
 
-	pastResources := p.parseJSONResources(true, baseResources, usage, parsed, providerConf, conf, vars)
+	pastResources := p.parseJSONResources(true, usage, parsed, providerConf, conf, vars)
 	resourceChanges := parsed.Get("resource_changes").Array()
 	pastResources = stripNonTargetResources(pastResources, resources, resourceChanges)
 
@@ -217,26 +209,6 @@ func StripSetupTerraformWrapper(b []byte) ([]byte, bool) {
 	stripped = outputLine.ReplaceAll(stripped, []byte{})
 
 	return stripped, len(stripped) != len(b)
-}
-
-func (p *Parser) loadUsageFileResources(u schema.UsageMap) []*schema.PartialResource {
-	resources := make([]*schema.PartialResource, 0)
-
-	for k, v := range u.Data() {
-		for _, t := range GetUsageOnlyResources() {
-			if strings.HasPrefix(k, fmt.Sprintf("%s.", t)) {
-				d := schema.NewResourceData(t, "global", k, nil, gjson.Result{})
-				// set the usage data as a field on the resource data in case it is needed when
-				// processing reference attributes.
-				d.UsageData = v
-				if r := p.createPartialResource(d, v); r != nil {
-					resources = append(resources, r)
-				}
-			}
-		}
-	}
-
-	return resources
 }
 
 // stripNonTargetResources removes any past resources that don't exist in the

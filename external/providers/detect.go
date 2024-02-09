@@ -13,7 +13,6 @@ import (
 	"github.com/kaytu-io/infracost/external/config"
 	"github.com/kaytu-io/infracost/external/hcl"
 	"github.com/kaytu-io/infracost/external/logging"
-	"github.com/kaytu-io/infracost/external/providers/cloudformation"
 	"github.com/kaytu-io/infracost/external/providers/terraform"
 	"github.com/kaytu-io/infracost/external/schema"
 )
@@ -86,8 +85,6 @@ func Detect(ctx *config.ProjectContext, includePastResources bool) (schema.Provi
 		return terraform.NewTerragruntProvider(ctx, includePastResources), nil
 	case "terraform_state_json":
 		return terraform.NewStateJSONProvider(ctx, includePastResources), nil
-	case "cloudformation":
-		return cloudformation.NewTemplateProvider(ctx, includePastResources), nil
 	}
 
 	return nil, fmt.Errorf("could not detect path type for '%s'", path)

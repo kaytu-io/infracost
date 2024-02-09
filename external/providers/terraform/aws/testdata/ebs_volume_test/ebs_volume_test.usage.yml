@@ -1,4 +1,0 @@
-version: 0.1
-resource_usage:
-  aws_ebs_volume.standard_withUsage:
-    monthly_standard_io_requests: 1000000
