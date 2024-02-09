@@ -302,7 +302,7 @@ func (p *HCLProvider) LoadPlanJSONs() []HCLProject {
 	for i, module := range mods {
 		if module.Error == nil {
 			module.JSON, module.Error = p.modulesToPlanJSON(module.Module)
-			if os.Getenv("INFRACOST_JSON_DUMP") == "true" {
+			if os.Getenv("PENYYWISE_JSON_DUMP") == "true" {
 				err := os.WriteFile(fmt.Sprintf("%s-out.json", strings.ReplaceAll(module.Module.ModulePath, "/", "-")), module.JSON, os.ModePerm)
 				if err != nil {
 					p.logger.Debug().Err(err).Msg("failed to write to json dump")
@@ -525,13 +525,6 @@ func (p *HCLProvider) getResourceOutput(block *hcl.Block) ResourceOutput {
 		Name:          stripCountOrForEach(block.NameLabel()),
 		Index:         block.Index(),
 		SchemaVersion: 0,
-		InfracostMetadata: map[string]interface{}{
-			"filename":  block.Filename,
-			"startLine": block.StartLine,
-			"endLine":   block.EndLine,
-			"calls":     block.CallDetails(),
-			"checksum":  generateChecksum(jsonValues),
-		},
 	}
 
 	changes := ResourceChangesJSON{
@@ -846,14 +839,13 @@ type ResourceOutput struct {
 }
 
 type ResourceJSON struct {
-	Address           string                 `json:"address"`
-	Mode              string                 `json:"mode"`
-	Type              string                 `json:"type"`
-	Name              string                 `json:"name"`
-	Index             *int64                 `json:"index,omitempty"`
-	SchemaVersion     int                    `json:"schema_version"`
-	Values            map[string]interface{} `json:"values"`
-	InfracostMetadata map[string]interface{} `json:"infracost_metadata"`
+	Address       string                 `json:"address"`
+	Mode          string                 `json:"mode"`
+	Type          string                 `json:"type"`
+	Name          string                 `json:"name"`
+	Index         *int64                 `json:"index,omitempty"`
+	SchemaVersion int                    `json:"schema_version"`
+	Values        map[string]interface{} `json:"values"`
 }
 
 type ResourceChangesJSON struct {

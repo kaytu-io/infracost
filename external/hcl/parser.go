@@ -3,6 +3,7 @@ package hcl
 import (
 	"errors"
 	"fmt"
+	"github.com/hashicorp/hcl/v2"
 	"os"
 	"path"
 	"path/filepath"
@@ -10,7 +11,6 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclparse"
 	"github.com/rs/zerolog"
 	"github.com/zclconf/go-cty/cty"
@@ -356,6 +356,12 @@ func (p *Parser) ParseDirectory() (m *Module, err error) {
 		return m, errors.New("No valid terraform files found given path, try a different directory")
 	}
 
+	// load the modules. This downloads any remote modules to the local file system
+	modulesManifest, err := p.moduleLoader.Load(p.initialPath)
+	if err != nil {
+		return m, fmt.Errorf("Error loading Terraform modules: %w", err)
+	}
+
 	p.logger.Debug().Msg("Loading TFVars...")
 	inputVars, err := p.loadVars(blocks, p.tfvarsPaths)
 	if err != nil {
@@ -380,6 +386,7 @@ func (p *Parser) ParseDirectory() (m *Module, err error) {
 		},
 		workingDir,
 		inputVars,
+		modulesManifest,
 		nil,
 		p.workspaceName,
 		p.blockBuilder,
