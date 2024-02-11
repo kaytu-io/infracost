@@ -73,7 +73,7 @@ type TerragruntHCLProvider struct {
 
 // NewTerragruntHCLProvider creates a new provider intialized with the configured project path (usually the terragrunt
 // root directory).
-func NewTerragruntHCLProvider(ctx *config.ProjectContext, includePastResources bool) schema.Provider {
+func NewTerragruntHCLProvider(ctx *config.ProjectContext, includePastResources bool) *TerragruntHCLProvider {
 	logger := ctx.Logger().With().Str(
 		"provider", "terragrunt_dir",
 	).Logger()
@@ -161,9 +161,9 @@ func (p *TerragruntHCLProvider) AddMetadata(metadata *schema.ProjectMetadata) {
 }
 
 type terragruntWorkingDirInfo struct {
-	configDir  string
-	workingDir string
-	provider   *HCLProvider
+	ConfigDir  string
+	WorkingDir string
+	Provider   *HCLProvider
 	error      error
 	warnings   []schema.ProjectDiag
 }
@@ -175,7 +175,7 @@ func (i *terragruntWorkingDirInfo) addWarning(pd schema.ProjectDiag) {
 // LoadResources finds any Terragrunt projects, prepares them by downloading any required source files, then
 // process each with an HCLProvider.
 func (p *TerragruntHCLProvider) LoadResources(usage schema.UsageMap) ([]*schema.Project, error) {
-	dirs, err := p.prepWorkingDirs()
+	dirs, err := p.PrepWorkingDirs()
 	if err != nil {
 		return nil, err
 	}
@@ -220,13 +220,13 @@ func (p *TerragruntHCLProvider) LoadResources(usage schema.UsageMap) ([]*schema.
 					continue
 				}
 
-				p.logger.Debug().Msgf("Found terragrunt HCL working dir: %v", di.workingDir)
+				p.logger.Debug().Msgf("Found terragrunt HCL working dir: %v", di.WorkingDir)
 
 				// HCLProvider.LoadResources never returns an error.
-				projects, _ := di.provider.LoadResources(usage)
+				projects, _ := di.Provider.LoadResources(usage)
 
 				for _, project := range projects {
-					projectPath := di.configDir
+					projectPath := di.ConfigDir
 					// attempt to convert project path to be relative to the top level provider path
 					if absPath, err := filepath.Abs(p.ctx.ProjectConfig.Path); err == nil {
 						if relProjectPath, err := filepath.Rel(absPath, projectPath); err == nil {
@@ -263,7 +263,7 @@ func (p *TerragruntHCLProvider) LoadResources(usage schema.UsageMap) ([]*schema.
 }
 
 func (p *TerragruntHCLProvider) newErroredProject(di *terragruntWorkingDirInfo) *schema.Project {
-	projectPath := di.configDir
+	projectPath := di.ConfigDir
 	if absPath, err := filepath.Abs(p.ctx.ProjectConfig.Path); err == nil {
 		if relProjectPath, err := filepath.Rel(absPath, projectPath); err == nil {
 			projectPath = filepath.Join(p.ctx.ProjectConfig.Path, relProjectPath)
@@ -327,10 +327,10 @@ func (p *TerragruntHCLProvider) initTerraformVars(tfVars map[string]string, inpu
 	return m
 }
 
-func (p *TerragruntHCLProvider) prepWorkingDirs() ([]*terragruntWorkingDirInfo, error) {
+func (p *TerragruntHCLProvider) PrepWorkingDirs() ([]*terragruntWorkingDirInfo, error) {
 	terragruntConfigPath := tgconfig.GetDefaultConfigPath(p.Path)
 
-	terragruntCacheDir := filepath.Join(config.InfracostDir, ".terragrunt-cache")
+	terragruntCacheDir := filepath.Join(config.PennywiseDir, ".terragrunt-cache")
 	terragruntDownloadDir := filepath.Join(p.ctx.RunContext.Config.CachePath(), terragruntCacheDir)
 	err := os.MkdirAll(terragruntDownloadDir, os.ModePerm)
 	if err != nil {
@@ -362,7 +362,7 @@ func (p *TerragruntHCLProvider) prepWorkingDirs() ([]*terragruntWorkingDirInfo, 
 					mu.Lock()
 					workingDirsToEstimate = append(
 						workingDirsToEstimate,
-						&terragruntWorkingDirInfo{configDir: opts.WorkingDir, workingDir: opts.WorkingDir, error: err},
+						&terragruntWorkingDirInfo{ConfigDir: opts.WorkingDir, WorkingDir: opts.WorkingDir, error: err},
 					)
 					mu.Unlock()
 				}
@@ -502,7 +502,7 @@ func (p *TerragruntHCLProvider) filterExcludedPaths(paths []string) []string {
 //  3. we then evaluate the Terraform project built by Terragrunt storing any outputs so that we can use
 //     these for further runTerragrunt calls that use the dependency outputs.
 func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions) (info *terragruntWorkingDirInfo) {
-	info = &terragruntWorkingDirInfo{configDir: opts.WorkingDir, workingDir: opts.WorkingDir}
+	info = &terragruntWorkingDirInfo{ConfigDir: opts.WorkingDir, WorkingDir: opts.WorkingDir}
 	outputs := p.fetchDependencyOutputs(opts)
 	terragruntConfig, err := tgconfig.ParseConfigFile(opts.TerragruntConfigPath, opts, nil, &outputs)
 	if err != nil {
@@ -567,17 +567,17 @@ func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions)
 		}
 
 		if updatedWorkingDir != "" {
-			info = &terragruntWorkingDirInfo{configDir: opts.WorkingDir, workingDir: updatedWorkingDir}
+			info = &terragruntWorkingDirInfo{ConfigDir: opts.WorkingDir, WorkingDir: updatedWorkingDir}
 		}
 	}
 
-	if err = generateConfig(terragruntConfig, opts, info.workingDir); err != nil {
+	if err = generateConfig(terragruntConfig, opts, info.WorkingDir); err != nil {
 		info.error = err
 		return
 	}
 
 	pconfig := *p.ctx.ProjectConfig // clone the projectConfig
-	pconfig.Path = info.workingDir
+	pconfig.Path = info.WorkingDir
 
 	if terragruntConfig.Terraform != nil {
 		pconfig.TerraformVarFiles = p.initTerraformVarFiles(pconfig.TerraformVarFiles, terragruntConfig.Terraform.ExtraArgs, pconfig.Path, opts)
@@ -587,7 +587,7 @@ func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions)
 	ops := []hcl.Option{}
 	inputs, err := convertToCtyWithJson(terragruntConfig.Inputs)
 	if err != nil {
-		p.logger.Debug().Msgf("Failed to build Terragrunt inputs for: %s err: %s", info.workingDir, err)
+		p.logger.Debug().Msgf("Failed to build Terragrunt inputs for: %s err: %s", info.WorkingDir, err)
 	} else {
 		ops = append(ops, hcl.OptionWithRawCtyInput(inputs))
 	}
@@ -600,7 +600,7 @@ func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions)
 		ops...,
 	)
 	if err != nil {
-		projectPath := info.configDir
+		projectPath := info.ConfigDir
 		if absPath, err := filepath.Abs(p.ctx.ProjectConfig.Path); err == nil {
 			if relProjectPath, err := filepath.Rel(absPath, projectPath); err == nil {
 				projectPath = filepath.Join(p.ctx.ProjectConfig.Path, relProjectPath)
@@ -628,7 +628,7 @@ func (p *TerragruntHCLProvider) runTerragrunt(opts *tgoptions.TerragruntOptions)
 		p.outputs[opts.TerragruntConfigPath] = evaluatedOutputs
 	}
 
-	info.provider = h
+	info.Provider = h
 	return info
 }
 

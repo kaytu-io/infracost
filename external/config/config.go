@@ -17,7 +17,7 @@ import (
 	"github.com/kaytu-io/infracost/external/logging"
 )
 
-const InfracostDir = ".infracost"
+const PennywiseDir = ".pennywise"
 
 // Project defines a specific terraform project config. This can be used
 // specify per folder/project configurations so that users don't have
@@ -196,7 +196,7 @@ func (c *Config) CachePath() string {
 
 func (c *Config) cachePath(dir string) string {
 	for {
-		cachePath := filepath.Join(dir, InfracostDir)
+		cachePath := filepath.Join(dir, PennywiseDir)
 		if _, err := os.Stat(cachePath); err == nil {
 			return filepath.Dir(cachePath)
 		}

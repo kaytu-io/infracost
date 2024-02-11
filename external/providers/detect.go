@@ -228,7 +228,7 @@ func IsTerragruntNestedDir(path string, maxDepth int) bool {
 		if err == nil {
 			for _, entry := range entries {
 				name := entry.Name()
-				if entry.IsDir() && name != config.InfracostDir && name != ".terraform" {
+				if entry.IsDir() && name != config.PennywiseDir && name != ".terraform" {
 					if IsTerragruntNestedDir(filepath.Join(path, name), maxDepth-1) {
 						return true
 					}

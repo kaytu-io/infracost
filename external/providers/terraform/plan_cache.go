@@ -195,7 +195,7 @@ func WritePlanCache(p *DirProvider, planJSON []byte) {
 		if os.IsNotExist(err) {
 			err := os.MkdirAll(cacheDir, 0700)
 			if err != nil {
-				log.Debug().Msgf("Couldn't create %v directory: %v", config.InfracostDir, err)
+				log.Debug().Msgf("Couldn't create %v directory: %v", config.PennywiseDir, err)
 				return
 			}
 		}
@@ -226,10 +226,10 @@ func calcCacheDir(p *DirProvider) string {
 
 	if dataDir != (path.Join(p.Path, ".terraform")) {
 		// there is a custom data dir, store the cache under that
-		return path.Join(dataDir, config.InfracostDir)
+		return path.Join(dataDir, config.PennywiseDir)
 	}
 
-	return path.Join(p.Path, config.InfracostDir)
+	return path.Join(p.Path, config.PennywiseDir)
 }
 
 func calcConfigState(p *DirProvider) configState {
@@ -260,7 +260,7 @@ func calcTFDataDate(path string, maxDepth int) time.Time {
 	entries, err := os.ReadDir(path)
 	if err == nil {
 		for _, entry := range entries {
-			if entry.Name() == config.InfracostDir {
+			if entry.Name() == config.PennywiseDir {
 				// ignore the infradir since we expect that to change
 				continue
 			}

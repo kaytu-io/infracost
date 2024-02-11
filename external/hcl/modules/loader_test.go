@@ -24,7 +24,7 @@ type TestLoaderE2EOpts = struct {
 
 func testLoaderE2E(t *testing.T, path string, expectedModules []*ManifestModule, opts TestLoaderE2EOpts) {
 	if opts.Cleanup {
-		err := os.RemoveAll(filepath.Join(path, config.InfracostDir))
+		err := os.RemoveAll(filepath.Join(path, config.PennywiseDir))
 		assert.NoError(t, err)
 	}
 
@@ -239,7 +239,7 @@ func TestMultiProject(t *testing.T) {
 	}
 
 	path := "./testdata/multi_project"
-	err := os.RemoveAll(filepath.Join(path, config.InfracostDir))
+	err := os.RemoveAll(filepath.Join(path, config.PennywiseDir))
 	assert.NoError(t, err)
 
 	logger := zerolog.New(io.Discard)
